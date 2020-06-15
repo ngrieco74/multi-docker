@@ -10,15 +10,15 @@ script:
       #docker run -e CI=true USERNAME/react-test npm test -- --coverage
     
 after_success:
-    - docker build -t multi-client -f ./client
-    - docker build -t multi-nginx -f ./nginx
-    - docker build -t multi-server -f ./server
-    - docker build -t multi-worker -f ./worker
+    - docker build -t ngrieco/multi-client -f ./client
+    - docker build -t ngrieco/multi-nginx -f ./nginx
+    - docker build -t ngrieco/multi-server -f ./server
+    - docker build -t ngrieco/multi-worker -f ./worker
     # Log in in the docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # Take those images and push them to docker hub
-    - docker push ngrieco/udemy_examples:multi-client
-    - docker push ngrieco/udemy_examples:multi-nginx
-    - docker push ngrieco/udemy_examples:multi-server
-    - docker push ngrieco/udemy_examples:multi-worker
+    - docker push ngrieco/multi-client
+    - docker push ngrieco/multi-nginx
+    - docker push ngrieco/multi-server
+    - docker push ngrieco/multi-worker
     
