@@ -3,22 +3,22 @@ services:
     - docker
     
 before_install:
-    - docker build -t ngrieco74/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t ngrieco/react-test -f ./client/Dockerfile.dev ./client
     
 script:
     - docker run -e CI=true ngrieco/react-test npm run test
       #docker run -e CI=true USERNAME/react-test npm test -- --coverage
     
 after_success:
-    - docker build -t ngrieco74/multi-client -f ./client
-    - docker build -t ngrieco74/multi-nginx -f ./nginx
-    - docker build -t ngrieco74/multi-server -f ./server
-    - docker build -t ngrieco74/multi-worker -f ./worker
+    - docker build -t ngrieco/multi-client -f ./client
+    - docker build -t ngrieco/multi-nginx -f ./nginx
+    - docker build -t ngrieco/multi-server -f ./server
+    - docker build -t ngrieco/multi-worker -f ./worker
     # Log in in the docker CLI
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     # Take those images and push them to docker hub
-    - docker push ngrieco74/multi-client
-    - docker push ngrieco74/multi-nginx
-    - docker push ngrieco74/multi-server
-    - docker push ngrieco74/multi-worker
+    - docker push ngrieco/multi-client
+    - docker push ngrieco/multi-nginx
+    - docker push ngrieco/multi-server
+    - docker push ngrieco/multi-worker
     
